@@ -5,7 +5,7 @@
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{9E75B327-F9B0-4E67-85C0-4F48E822A687}</ProjectGuid>
+        <ProjectGuid>{A3E3FB81-1972-4F93-A565-4A514456C4F2}</ProjectGuid>
         <OutputType>Exe</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
         <RootNamespace>E_Pigeons</RootNamespace>
