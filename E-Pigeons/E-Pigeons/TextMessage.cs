@@ -1,6 +1,6 @@
 ﻿namespace E_Pigeons
 {
-    public class TextMessage:BasicMessage, IDstId, ISrcId, IText, IGenerate
+    public class TextMessage:BasicMessage, IDstId, ISrcId, IText
     {
         private ushort dstId;
         private ushort srcId;
@@ -44,7 +44,7 @@
 
         public string GetText() => txt;
 
-        public byte[] Generate()
+        public override byte[] Generate()
         {
             int syncLen;
             int dstIdLen;

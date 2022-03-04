@@ -1,6 +1,6 @@
 ﻿namespace E_Pigeons
 {
-    public class BasicMessage
+    public abstract class BasicMessage : IGenerate
     {
         private string sync;
 
@@ -10,5 +10,7 @@
         }
 
         public virtual string GetSync() => this.sync;
+
+        public abstract byte[] Generate();
     }
 }
