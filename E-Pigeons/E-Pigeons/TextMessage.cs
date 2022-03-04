@@ -1,4 +1,6 @@
-﻿namespace E_Pigeons
+﻿using System;
+
+namespace E_Pigeons
 {
     public class TextMessage:BasicMessage, IDstId, ISrcId, IText
     {
@@ -50,42 +52,53 @@
             int dstIdLen;
             int srcIdLen;
             int txtLen;
+            int pow;
+            int digit;
             int i;
             int byteSize;
             int start;
-            int pow;
-
-            pow = 1;
+            string _sync;
+            int _dstId;
+            int _srcId;
+            string _txt;
+            
             start = 0;
-            syncLen = GetSync().Length;
-            dstIdLen = GetDstId().ToString().Length;
-            srcIdLen = GetSrcId().ToString().Length;
-            txtLen = GetText().Length;
+            _sync = GetSync();
+            _dstId = GetDstId();
+            _srcId = GetSrcId();
+            _txt = GetText();
+            
+            syncLen = _sync.Length;
+            dstIdLen = _dstId.ToString().Length;
+            srcIdLen = _srcId.ToString().Length;
+            txtLen = _txt.Length;
+            
             byteSize = syncLen + dstIdLen + srcIdLen + txtLen;
             byte[] byteArr = new byte[byteSize];
             
             for (i = 0; i < syncLen; i++, start++)
             {
-                byteArr[start] = (byte)(GetSync()[i] - '0');
+                byteArr[start] = (byte)(_sync[i] - '0');
             }
 
             for (i = 0; i < dstIdLen; i++, start++)
             {
-                byteArr[start] = (byte)(GetDstId()%10*pow);
-                pow *= 10;
+                pow = (int) Math.Pow(10, dstIdLen - (i + 1));
+                digit = (_dstId / pow) % 10;
+                byteArr[start] = (byte)(digit);
             }
 
-            pow = 1;
             
             for (i = 0; i < srcIdLen; i++, start++)
             {
-                byteArr[start] = (byte)(GetSrcId()%10*pow);
-                pow *= 10;
+                pow = (int) Math.Pow(10, srcIdLen - (i + 1));
+                digit = (_srcId / pow) % 10;
+                byteArr[start] = (byte)(digit);
             }
 
             for ( i = 0; i < txtLen; i++, start++)
             {
-                byteArr[start] = (byte) (GetText()[i]);
+                byteArr[start] = (byte) (_txt[i]);
             }
             
             return byteArr;
