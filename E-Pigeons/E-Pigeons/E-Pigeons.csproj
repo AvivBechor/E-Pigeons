@@ -40,7 +40,9 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="BasicMessage.cs" />
+        <Compile Include="Generator.cs" />
         <Compile Include="IDstId.cs" />
+        <Compile Include="IGenerate.cs" />
         <Compile Include="ISrcId.cs" />
         <Compile Include="IText.cs" />
         <Compile Include="Program.cs" />

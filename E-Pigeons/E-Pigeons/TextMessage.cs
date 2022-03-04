@@ -1,6 +1,6 @@
 ﻿namespace E_Pigeons
 {
-    public class TextMessage:BasicMessage, IDstId, ISrcId, IText
+    public class TextMessage:BasicMessage, IDstId, ISrcId, IText, IGenerate
     {
         private ushort dstId;
         private ushort srcId;
@@ -43,5 +43,53 @@
         public ushort GetSrcId() => srcId;
 
         public string GetText() => txt;
+
+        public byte[] Generate()
+        {
+            int syncLen;
+            int dstIdLen;
+            int srcIdLen;
+            int txtLen;
+            int i;
+            int byteSize;
+            int start;
+            int pow;
+
+            pow = 1;
+            start = 0;
+            syncLen = GetSync().Length;
+            dstIdLen = GetDstId().ToString().Length;
+            srcIdLen = GetSrcId().ToString().Length;
+            txtLen = GetText().Length;
+            byteSize = syncLen + dstIdLen + srcIdLen + txtLen;
+            byte[] byteArr = new byte[byteSize];
+            
+            for (i = 0; i < syncLen; i++, start++)
+            {
+                byteArr[start] = (byte)(GetSync()[i] - '0');
+            }
+
+            for (i = 0; i < dstIdLen; i++, start++)
+            {
+                byteArr[start] = (byte)(GetDstId()%10*pow);
+                pow *= 10;
+            }
+
+            pow = 1;
+            
+            for (i = 0; i < srcIdLen; i++, start++)
+            {
+                byteArr[start] = (byte)(GetSrcId()%10*pow);
+                pow *= 10;
+            }
+
+            for ( i = 0; i < txtLen; i++, start++)
+            {
+                byteArr[start] = (byte) (GetText()[i]);
+            }
+            
+            return byteArr;
+
+        }
     }
 }
