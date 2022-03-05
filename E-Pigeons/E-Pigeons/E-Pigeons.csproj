@@ -43,11 +43,15 @@
         <Compile Include="Generator.cs" />
         <Compile Include="IDstId.cs" />
         <Compile Include="IGenerate.cs" />
+        <Compile Include="Inputer.cs" />
         <Compile Include="ISrcId.cs" />
         <Compile Include="IText.cs" />
+        <Compile Include="MessageCreator.cs" />
+        <Compile Include="Outputer.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="TextMessage.cs" />
+        <Compile Include="WriteLetter.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

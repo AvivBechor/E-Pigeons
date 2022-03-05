@@ -18,7 +18,7 @@ namespace E_Pigeons
 
         public override void SetSync(string _sync)
         {
-            if (!int.TryParse(_sync, out int num))
+            if (!Inputer.CheckIfNumber(_sync))
             {
                 _sync = "0101";
             }
