@@ -6,6 +6,7 @@ namespace E_Pigeons
     {
         public static void Main(string[] args)
         {
+            Console.WriteLine("test:");
             WriteLetter write = new WriteLetter();
             write.WriteLetters();
             
